@@ -1,5 +1,5 @@
 function cleanSet(set, startString) {
-  if (!set || !startString || !startString.length) {
+  if (!set || !(set instanceof Set) || !startString || !startString.length) {
     return '';
   }
 
