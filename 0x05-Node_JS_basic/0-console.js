@@ -1,7 +1,7 @@
 /**
  * Logs a message to the console.
  */
-function displayMessage (message) {
+function displayMessage(message) {
   console.log(message);
 }
 
