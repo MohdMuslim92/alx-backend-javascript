@@ -2,7 +2,6 @@
  * using Promises. Counts the total number of students and logs the count
  * and list of students in each field.
  */
-
 const fs = require('fs');
 
 function countStudents(path) {
@@ -14,22 +13,18 @@ function countStudents(path) {
         const lines = data.trim().split('\n');
         const students = [];
 
-        lines.forEach((line, index) => {
+        lines.forEach((line) => {
           const [firstname, lastname, age, field] = line.split(',');
 
           // Check if all fields are present and non-empty
-          if (
-            firstname.trim() && lastname.trim() && age.trim() && field.trim()
-          ) {
+          if (firstname.trim() && lastname.trim() && age.trim() && field.trim()) {
             students.push({ firstname, field });
-          } else {
-            console.log(`Invalid line at index ${index + 1}: ${line}`);
           }
         });
-        const totalStudents = students.length;
-        console.log(`Number of students: ${totalStudents}`);
 
+        const totalStudents = students.length;
         const fields = {};
+
         students.forEach((student) => {
           if (!fields[student.field]) {
             fields[student.field] = { count: 1, names: [student.firstname] };
@@ -39,11 +34,13 @@ function countStudents(path) {
           }
         });
 
+        const output = [`Number of students: ${totalStudents}`];
+
         Object.entries(fields).forEach(([field, info]) => {
-          console.log(`Number of students in ${field}: ${info.count}. List: ${info.names.join(', ')}`);
+          output.push(`Number of students in ${field}: ${info.count}. List: ${info.names.join(', ')}`);
         });
 
-        resolve();
+        resolve(output.join('\n'));
       }
     });
   });
