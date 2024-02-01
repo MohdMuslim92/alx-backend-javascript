@@ -13,7 +13,7 @@ const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
 
   if (pathname === '/') {
-    res.end('Hello Holberton School!\n');
+    res.end('Hello Holberton School!');
   } else if (pathname === '/students') {
     const [, , database] = process.argv;
 
@@ -25,7 +25,7 @@ const app = http.createServer((req, res) => {
         res.end(error.message);
       });
   } else {
-    res.end('Not found\n');
+    res.end('Not found');
   }
 });
 
