@@ -1,4 +1,7 @@
-// utils.js
+/** This file defines a module named Utils containing a property calculateNumber
+ * The calculateNumber function performs mathematical operations such as
+ * addition, subtraction, and division on two given numbers.
+ */
 
 const Utils = {
   calculateNumber: function (type, a, b) {
