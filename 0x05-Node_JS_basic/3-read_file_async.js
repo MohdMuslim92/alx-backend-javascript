@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 
-function countStudents(path) {
+function countStudents (path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
@@ -14,14 +14,18 @@ function countStudents(path) {
         const lines = data.trim().split('\n');
         const students = [];
 
-        lines.forEach((line) => {
+        lines.forEach((line, index) => {
           const [firstname, lastname, age, field] = line.split(',');
 
-          if (firstname && lastname && age && field) {
+          // Check if all fields are present and non-empty
+          if (
+            firstname.trim() && lastname.trim() && age.trim() && field.trim()
+          ) {
             students.push({ firstname, field });
+          } else {
+            console.log(`Invalid line at index ${index + 1}: ${line}`);
           }
         });
-
         const totalStudents = students.length;
         console.log(`Number of students: ${totalStudents}`);
 
